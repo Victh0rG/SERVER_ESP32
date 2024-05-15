@@ -16,7 +16,26 @@ void setup() {
   // inicializa com uma faixa de 9600
   Serial.begin(9600);
 
+  // Conecta ao wi-fi
   wifi.begin(ssid, passord);
+  while(wif.status() != WL_CONNECTED){
+    Serial.println("Connecting to WiFi")
+  }
+  Serial.println("Connecting to WiFi")
+
+  
+  Serial.print("ESP32 Web Server's IP address: ")
+  Serial.println(Wifi.localIP()); // obtem o endereco IP local atribuido ao ESP32 e depois imprime
+
+  // define a rota para o servidor pagina HTML
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
+    Serial.println("ESP32 Web Server: New request received:");  // for debugging
+    Serial.println("GET /");        // for debugging
+    request->send(200, "text/html", "<html><body><h1>Hello, ESP32!</h1></body></html>");
+  });
+
+  // Inicializa o servidor
+  server.begin();
 }
 
 void loop() {
