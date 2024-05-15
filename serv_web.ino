@@ -11,6 +11,14 @@ const char* password = "senhafoda";
 // cria objeto AsyncWebServer na porta 80
 AsyncWebServer server(80);
 
+// Metodo para temperatura
+float getTemperature(){
+  //sensor implementacao 
+  // simual o valor da temperatura
+  float temp_x100 = random(0, 10000);
+  return temp_x100; // retorna a temperatura entre um valor de 0 a 100
+}
+
 void setup() {
   // put your setup code here, to run once:
   // inicializa com uma faixa de 9600
